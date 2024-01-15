@@ -9,4 +9,4 @@ jobs:
         uses: actions/checkout@v4
       - name: Testing install without sudo
         run: |
-          sudo apt install htop
+          sudo apt install htop neovim pylint
