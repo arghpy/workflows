@@ -9,4 +9,4 @@ jobs:
         uses: actions/checkout@v4
       - name: Testing install without sudo
         run: |
-          sudo apt install shellcheck
+          sudo apt install htop
