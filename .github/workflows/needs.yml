@@ -1,0 +1,21 @@
+name: Needs test
+run-name: needs
+on: [push]
+jobs:
+  example-job:
+    name: Save output
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          expr 1 + 1 > output.log
+      - name: Upload output file
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-log-file
+          path: output.log
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        needs: Upload output file
+        with:
+          name: output-log-file
