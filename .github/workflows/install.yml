@@ -1,0 +1,12 @@
+name: Testing downloadin
+run-name: shellcheck
+on: [push]
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Testing install without sudo
+        run: |
+          apt install shellcheck
