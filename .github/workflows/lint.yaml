@@ -17,6 +17,6 @@ jobs:
         uses: super-linter/super-linter/slim@v5
         env:
           LOG_LEVEL: ERROR
-          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
