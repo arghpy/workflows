@@ -13,10 +13,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Determine all code base linting
+        run: |
+          if contains(github.event.issue.labels.*.name, 'all codebase'); then
+            ALL_CODEBASE="true"
+          else
+            ALL_CODEBASE="false"
+            
       - name: Start linting
         uses: super-linter/super-linter/slim@v5
         env:
           LOG_LEVEL: ERROR
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: ${{ env.ALL_CODEBASE }}
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
