@@ -1,3 +1,3 @@
 # Actions
 
-This repository is meant for testing github actions.
+This repository is meant for testing GitHub actions.
