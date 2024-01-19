@@ -17,6 +17,6 @@ jobs:
         uses: super-linter/super-linter/slim@v5
         env:
           LOG_LEVEL: ERROR
-          VALIDATE_ALL_CODEBASE: ${{ contains(github.event.issue.labels.*.name, 'all codebase') && 'true' || 'false' }}
+          VALIDATE_ALL_CODEBASE: ${{ github.event.label.name == 'all codebase') && 'true' || 'false' }}
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
