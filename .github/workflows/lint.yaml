@@ -1,0 +1,22 @@
+name: Lint code
+
+on: [pull_request, workflow_call]
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Start linting
+        uses: super-linter/super-linter/slim@v5
+        env:
+          LOG_LEVEL: ERROR
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
