@@ -27,8 +27,7 @@ jobs:
             const hasAllCodebaseLabel = labels.some(label => label.name === 'all codebase');
             return { validate_all_codebase: hasAllCodebaseLabel };
           result-encoding: string
-          env:
-            PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
 
       - name: Start linting
         uses: super-linter/super-linter/slim@v5
