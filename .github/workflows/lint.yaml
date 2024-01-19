@@ -13,10 +13,24 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Check for all codebase label
+        id: check_label
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const hasAllCodebaseLabel = labels.some(label => label.name === 'all codebase');
+            return { validate_all_codebase: hasAllCodebaseLabel };
+          result-encoding: string
+
       - name: Start linting
         uses: super-linter/super-linter/slim@v5
         env:
           LOG_LEVEL: ERROR
-          VALIDATE_ALL_CODEBASE: ${{ github.event.label.name == 'all codebase' && 'true' || 'false' }}
+          VALIDATE_ALL_CODEBASE: ${{ steps.check_label.outputs.result }}
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
