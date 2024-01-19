@@ -18,8 +18,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const core = require('@actions/core')
-            const prNumber = core.getInput('pr_number', { required: true });
+            const prNumber = ${process.env.PR_NUMBER}
             const { data: labels } = await github.rest.issues.listLabelsOnIssue({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -28,7 +27,8 @@ jobs:
             const hasAllCodebaseLabel = labels.some(label => label.name === 'all codebase');
             return { validate_all_codebase: hasAllCodebaseLabel };
           result-encoding: string
-          pr_number: ${{ github.event.pull_request.number }}
+          env:
+            PR_NUMBER: ${{ github.event.pull_request.number }}
 
       - name: Start linting
         uses: super-linter/super-linter/slim@v5
