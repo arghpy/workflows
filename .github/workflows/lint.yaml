@@ -16,7 +16,7 @@ jobs:
       - name: Start linting
         uses: super-linter/super-linter/slim@v5
         env:
-          LOG_LEVEL: ERROR
+          LOG_LEVEL: VERBOSE
           VALIDATE_ALL_CODEBASE: ${{ contains(github.event.*.labels.*.name, 'all codebase') }}
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
