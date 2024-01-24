@@ -24,4 +24,4 @@ jobs:
 
       - name: test
         run: |
-          ping 1.1.1.1 -c 3 
+          lscpu && free -h && df -h
