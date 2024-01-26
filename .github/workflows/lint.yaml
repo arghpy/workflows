@@ -21,7 +21,3 @@ jobs:
           VALIDATE_ALL_CODEBASE: ${{ contains(github.event.*.labels.*.name, 'all codebase') }}
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: test
-        run: |
-          lscpu && free -h && df -h
